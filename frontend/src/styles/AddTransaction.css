@@ -1,0 +1,62 @@
+
+.balance {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.transactions-list {
+    list-style: none;
+    padding: 0;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    background: #f3e5f5;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+AddTransaction.css
+.add-transaction-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-transaction-form label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.add-transaction-form input {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-transaction-form button {
+    padding: 10px;
+    font-size: 1rem;
+    background: #6a1b9a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-transaction-form button:hover {
+    background: #4a148c;
+}
+
+ 
