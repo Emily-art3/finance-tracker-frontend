@@ -54,3 +54,32 @@
     font-style: italic;
     text-align: center;
 }
+/* src/styles/Home.css */
+.home-container {
+    padding-top: 100vh; /* Push the content below the hero section */
+    position: relative;
+    z-index: 1;
+  }
+  
+  .content-section {
+    padding: 40px;
+  }
+  
+  .transactions-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .transaction-item {
+    padding: 10px 0;
+  }
+  
+  .balance {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  
+  h2 {
+    margin-top: 40px;
+  }
+  

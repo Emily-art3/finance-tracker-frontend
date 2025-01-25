@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import API from '../services/api';
-import './AddTransaction.css';
+import '../styles/AddTransaction.css';
 
 const AddTransaction = () => {
     const [description, setDescription] = useState('');
