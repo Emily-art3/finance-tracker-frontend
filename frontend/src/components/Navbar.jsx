@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaHome, FaList, FaPlus } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faBars } from '@fortawesome/free-solid-svg-icons'; // Import icons
 import '../styles/Navbar.css';
 
 const Navbar = () => {
@@ -15,26 +16,29 @@ const Navbar = () => {
       <div className="navbar-header">
         <h1>Finance Tracker</h1>
         <div className="hamburger" onClick={toggleMenu}>
-          <span className="line"></span>
-          <span className="line"></span>
-          <span className="line"></span>
+          <FontAwesomeIcon icon={faBars} className="hamburger-icon" /> {/* Hamburger icon */}
         </div>
       </div>
       <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
         <li>
           <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
-            <FaHome /> Home
+            <FontAwesomeIcon icon={faHome} /> Home {/* Home icon */}
           </NavLink>
         </li>
         <li>
           <NavLink to="/transactions" className={({ isActive }) => (isActive ? 'active' : '')}>
-            <FaList /> Transactions
+            Transactions
           </NavLink>
         </li>
         <li>
           <NavLink to="/add-transaction" className={({ isActive }) => (isActive ? 'active' : '')}>
-            <FaPlus /> Add Transaction
+            Add Transaction
           </NavLink>
+          <li>
+          <NavLink to="/budget-planner" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Budget Planner
+          </NavLink>
+          </li>
         </li>
       </ul>
     </nav>

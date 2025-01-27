@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import AddTransaction from './pages/AddTransaction';
 import EditTransaction from './pages/EditTransaction';
 import Transactions from './pages/Transactions';
+import BudgetPlanner from './components/BudgetPlanner';
 
 function App() {
     const [message, setMessage] = useState('');
@@ -32,6 +33,7 @@ function App() {
                         <Route path="/add" element={<AddTransaction />} />
                         <Route path="/edit/:id" element={<EditTransaction />} />
                         <Route path="/transactions" element={<Transactions />} />
+                        <Route path="/budget-planner" element={<BudgetPlanner />} />
                     </Routes>
                     {message && <p>{message}</p>}
                 </main>

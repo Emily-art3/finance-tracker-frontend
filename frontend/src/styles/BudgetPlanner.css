@@ -1,0 +1,80 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #d9a7c7, #fffcdc);
+    margin: 0;
+    padding: 0;
+  }
+  
+  .budget-planner {
+    padding: 20px;
+    color: #333;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .header h1 {
+    color: #4c4c6d;
+    font-size: 2.5rem;
+  }
+  
+  .header p {
+    color: #6c757d;
+    font-size: 1rem;
+  }
+  
+  .category-section {
+    margin-bottom: 20px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .category-section h2 {
+    color: #6b705c;
+    border-bottom: 2px solid #ff6f61;
+    margin-bottom: 15px;
+  }
+  
+  .input-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .input-row input,
+  .input-row select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 45%;
+  }
+  
+  .summary-section {
+    background: #fefefe;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .summary-section p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  
+  .chart-section {
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  .chart-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #4b5563;
+  }
+  

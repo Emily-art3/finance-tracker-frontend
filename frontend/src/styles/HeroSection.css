@@ -1,59 +1,82 @@
-/* src/components/HeroSection.css */
+/* Global Style for Body and HTML */
+html, body {
+  height: 100%; /* Full height of the viewport */
+  margin: 0; /* Removes default margin */
+  display: flex;
+  flex-direction: column; /* Makes sure we can stack items vertically */
+}
+
+/* Main Container (home-container) should take the full height */
+.home-container {
+  flex: 1; /* This allows the content to grow and fill the available space */
+  display: flex;
+  flex-direction: column; /* Stacks child elements vertically */
+}
 
 /* Hero Section */
 .hero-section {
-  width: 100%;
-  position: relative;
+  width: 100%; /* Takes up the full width of the container */
+  position: relative; /* Positioning context for absolute children */
 }
 
-/* Header with GET ON TOP OF YOUR FINANCES text */
 .hero-header {
-  position: absolute;
-  width: 100%;
-  top: 0; /* Start from the top of the section */
-  left: 0;
+  position: absolute; /* Absolute positioning to place it freely */
+  max-width: 90%; /* Ensure it doesn't exceed the page width */
+  left: 50%; /* Start at the horizontal center */
+  transform: translateX(-50%); /* Center the element while keeping it responsive */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 0vh;  /* Height for the section above the background image */
-  background: rgba(0, 0, 0, 0.5);  /* Semi-transparent overlay */
-  z-index: 1;  /* Ensure text is above background */
+  justify-content: flex-end; /* Align text to the right */
+  align-items: center; /* Vertically center the text */
+  text-align: right; /* Ensure text is aligned to the right */
+  height: 5vh; /* Adjust the header height */
+  padding: 0 2%; /* Add some padding for breathing space */
+  background: rgba(0, 0, 0, 0.5); /* Optional: Add contrast for readability */
+  overflow-wrap: break-word; /* Prevent text overflow */
+  line-height: 1.2; /* Improve text spacing */
 }
 
+/* This applies the typewriter effect and blinking cursor to the heading */
 .animated-heading {
-  font-size: 3rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #6a1b9a;
-  animation: typewriter 4s steps(40, end), blink 0.6s step-end infinite;
-  text-align: center;
-  z-index: 2;  /* Ensure heading stays above other elements */
+  font-size: 3rem; /* Font size of the heading */
+  font-weight: 700; /* Bold text */
+  text-transform: uppercase; /* Makes the text uppercase */
+  color: #6a1b9a; /* Purple color for the text */
+  animation: typewriter 4s steps(40, end), blink 0.6s step-end infinite; /* Typewriter effect */
+  text-align: center; /* Ensures the text is centered */
 }
 
-/* Hero Section with Background Image */
+/* Background image for hero section overlay */
 .hero-overlay {
-  position: relative;
-  width: 100%;
-  height: 60vh;  /* Background image starts here */
-  background: url('/public/assets/1708251150918.png') no-repeat center center/cover; /* Background image */
+  width: 80%; /* Takes up half the width of the container */
+  height: 100vh; /* 50% of the viewport height */
+  background: url('/public/assets/1708251150918.png') no-repeat center center;
+  background-size: cover; /* Ensures the image covers the container */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 0;  /* Ensure background is below the text */
+  z-index: 0; /* Ensures overlay stays behind other content */
+}
+
+/* Button hover effects for Get Started and Sign Up buttons */
+.get-started-btn:hover, .sign-up-button:hover {
+  background-color: black; /* Background color on hover */
+  color: white; /* Text color changes on hover */
+  transition: 0.3s; /* Smooth transition effect */
 }
 
 /* Welcome Message Section */
 .hero-footer {
   padding: 30px;
-  background-color: #f5f5f5;
-  text-align: center;
+  background-color: #4c026ecb; /* Purple background for footer */
+  text-align: right; /* Aligns text to the right */
 }
 
 .welcome-message {
-  font-size: 1.5rem;
-  color: #333;
+  font-size: 2.5rem; /* Font size of the welcome message */
+  color: rgba(2, 3, 82, 0.623); /* Dark blue color */
 }
 
+/* Add margin to the button in the welcome message */
 .hero-footer button {
   margin-top: 15px;
 }
@@ -61,94 +84,361 @@
 /* Empowering Financial Journey Section */
 .empower-financial-journey {
   padding: 50px 30px;
-  background-color: #f1f1f1;
-  text-align: center;
+  text-align: center; /* Centers the heading and description */
 }
 
 .empower-heading {
-  font-size: 2 rem; /* Slightly reduced */
+  font-size: 2rem;
   font-weight: 600;
-  color: #6a1b9a;
+  color: #480472; /* Dark purple color */
   margin-bottom: 20px;
 }
 
 .bigger-bold-heading {
-  font-size: 2.5rem; /* Ensures it's much larger */
-  font-weight: 600; /* Maximum boldness */
-  color: #8424aa; /* Distinct color */
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #8424aa; /* Bright purple color */
   margin-top: 15px;
-  line-height: 1.2; /* Adjusts spacing for compactness */
-  text-transform: uppercase; /* Emphasizes importance */
-  text-align: center; /* Ensures proper alignment */
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-align: center;
 }
 
-/* Empowering Description */
 .empower-description {
   font-size: 1.25rem;
   color: #555;
   margin-top: 20px;
+  margin-bottom: 40px; /* Add space below description */
 }
 
-/* Services Section */
+/* Services Container */
 .services-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  text-align: center;
+  display: grid; /* Use a grid layout */
+  grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
+  gap: 20px; /* Add spacing between the cards */
+  max-width: 1200px; /* Center the container and set maximum width */
+  margin: 0 auto; /* Center align the container */
+  padding: 20px; /* Add some padding around the container */
 }
 
+/* Service Item */
 .service {
-  width: 250px;
-  text-align: center;
+  background: #fff; /* White background */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center aligns all children horizontally */
+  align-items: center; /* Center content in each card */
+  text-align: center; /* Center text inside the card */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
 }
 
 .service-logo {
-  font-size: 2.5rem; /* Adjust the size of the FontAwesome icon */
-  color: #6a1b9a; /* Set the color for the icons */
+  font-size: 2.5rem; /* Large size for icons */
+  color: #480472; /* Icon color */
   margin-bottom: 15px;
 }
 
 .service-heading {
   font-size: 1.25rem;
-  font-weight: 700;
-  color: #333;
-  margin: 10px 0;
+  font-weight: 600;
+  color: #8424aa; /* Purple color for headings */
+  margin-bottom: 10px;
 }
 
 .service-description {
   font-size: 1rem;
-  color: #555;
+  color: #555; /* Dark gray text */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .services-container {
+    grid-template-columns: 1fr; /* Single column layout for smaller screens */
+  }
+}
+
+/* Container for both text and image */
+.start-journey-section {
+  display: flex; /* Ensures horizontal alignment */
+  justify-content: space-between; /* Spreads text and image apart */
+  align-items: center; /* Vertically centers items */
+  margin: 2rem auto; /* Centers the section and adds vertical spacing */
+  max-width: 1200px; /* Restricts width to 1200px */
+  padding: 2rem; /* Adds spacing inside the container */
+  background-color: rgba(4, 58, 71, 0.38); /* Semi-transparent background */
+  border-radius: 10px; /* Adds rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds shadow for depth */
+  gap: 2rem; /* Adds space between the text and image */
+}
+
+/* Image Section */
+.start-journey-image {
+  flex: 1; /* Occupies half the space */
+  text-align: center; /* Centers the image */
+}
+
+.start-journey-image img {
+  max-width: 100%; /* Prevents the image from overflowing */
+  height: auto; /* Maintains aspect ratio */
+  border-radius: 10px; /* Adds rounded corners */
+}
+
+/* Text Section */
+.text-container {
+  flex: 1; /* Occupies the other half of the space */
+  text-align: left; /* Aligns text to the left */
+  padding: 1rem; /* Adds padding around text */
+}
+
+.journey-heading {
+  font-size: 2.5rem; /* Larger heading font size */
+  font-weight: bold; /* Bold heading */
+  color: #6a1b9a; /* Purple color for heading */
+  margin-bottom: 1rem; /* Adds space below heading */
+}
+
+.journey-description {
+  font-size: 1.2rem; /* Font size for description */
+  color: #333; /* Darker gray color */
+  margin-bottom: 1rem; /* Adds space between paragraphs */
+}
+
+.sign-up-button {
+  display: inline-block;
+  font-size: 1.2rem; /* Button font size */
+  font-weight: bold; /* Bold text */
+  color: #fff; /* White text */
+  background-color: #6a1b9a; /* Purple background */
+  padding: 0.75rem 1.5rem; /* Button padding */
+  text-decoration: none; /* Removes underline */
+  border-radius: 5px; /* Rounds corners */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+  cursor: pointer; /* Pointer cursor */
+}
+
+.sign-up-button:hover {
+  background-color: #8424aa; /* Darker purple on hover */
+}
+
+/* Optional: Responsive Design */
+@media (max-width: 768px) {
+  .start-journey-section {
+    flex-direction: column; /* Stacks text and image vertically on small screens */
+    text-align: center; /* Centers text */
+  }
+
+  .start-journey-image,
+  .text-container {
+    flex: none; /* Removes flex behavior for smaller screens */
+    max-width: 100%; /* Ensures content doesn't exceed screen width */
+  }
+
+  .start-journey-image img {
+    max-width: 90%; /* Prevents image overflow */
+  }
+}
+
+/* Signup Form Styles */
+.sign-up-form {
+  display: flex; /* Stack inputs vertically */
+  flex-direction: column; /* Vertical alignment */
+  margin-top: 1rem; /* Space above the form */
+  padding: 1rem;
+  background-color: #fff; /* White background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.sign-up-form input {
+  padding: 0.8rem; /* Input padding */
+  margin-bottom: 1rem; /* Space between inputs */
+  font-size: 1rem; /* Font size for inputs */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 5px; /* Rounded corners for inputs */
+}
+
+.hidden {
+  display: none; /* Hide the form initially */
+}
+
+.features-overview {
+  padding: 4rem 2rem;
+}
+
+.section-heading {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #5a2d82; /* Accent color matching your palette */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
-.service p {
-  font-size: 1rem;
+.feature-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem; /* Space between sections */
+}
+
+.feature-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem; /* Space between text and image */
+  padding: 2rem;
+}
+
+.feature-section.reverse {
+  flex-direction: row-reverse; /* Switch text and image positions */
+}
+
+.text-content {
+  flex: 1; /* Text and image occupy equal width */
+}
+
+.text-content h2 {
+  font-size: 3.2rem; /* Increase heading size */
+  margin-bottom: 1rem;
+  color: #5a2d82; /* Adjust as needed */
+}
+
+.text-content p {
+  font-size: 3.2rem; /* Slightly larger for better balance */
+  line-height: 1.8; /* Improve readability */
+  margin-bottom: 1.5rem;
   color: #333;
 }
 
-/* Images Section */
-.hero-images {
-  margin-top: 50px;
+.text-content ul {
+  margin-top: 1rem;
+  padding-left: 1.5rem;
 }
 
-.image-container {
+.text-content ul li {
+  margin-bottom: 0.7rem; /* Slightly larger spacing for readability */
+}
+
+.explore-btn {
+  background-color: #b45f9e; /* Button color */
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.explore-btn:hover {
+  background-color: #933e7a; /* Darker hover color */
+}
+
+.image-content {
+  flex: 1; /* Image occupies equal width as text */
   display: flex;
   justify-content: center;
-  gap: 20px;
+  align-items: center;
 }
 
-.hero-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+.image-content img {
+  width: 100%; /* Make responsive */
+  max-width: 400px; /* Restrict maximum width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Smooth corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add depth */
 }
 
-.hero-image:hover {
-  transform: scale(1.05);
+@media (max-width: 768px) {
+  .feature-section {
+    flex-direction: column; /* Stack on smaller screens */
+    text-align: center; /* Center-align text */
+  }
+
+  .feature-section.reverse {
+    flex-direction: column; /* Ensure reverse stacks as well */
+  }
+
+  .image-content img {
+    max-width: 300px; /* Reduce size for smaller screens */
+  }
+}
+
+/* Footer */
+.footer-section {
+  background-color: #f4f4f4; /* Light gray background */
+  padding: 20px; /* Padding inside the footer */
+  text-align: center; /* Centers text */
+  color: #333; /* Dark text for contrast */
+  margin-top: auto; /* Pushes footer to the bottom */
+  display: flex;
+  flex-direction: column; /* Stacks items vertically */
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+/* Footer Inner Content */
+.footer-section p {
+  margin: 10px 0; /* Space around the text */
+  font-size: 1rem; /* Font size */
+}
+
+.footer-section .footer-links {
+  display: flex;
+  justify-content: center; /* Centers footer links */
+  gap: 20px; /* Space between links */
+  margin-top: 10px; /* Margin above the links */
+}
+
+.footer-section .footer-links a {
+  color: #6a1b9a; /* Purple color for links */
+  text-decoration: none; /* No underline */
+  font-size: 1.1rem; /* Font size */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.footer-section .footer-links a:hover {
+  color: #ab47bc; /* Lighter purple color on hover */
+}
+
+.footer-section .contact-info {
+  margin-top: 20px; /* Space above the contact info */
+}
+
+.footer-section .social-icons {
+  margin-top: 20px; /* Space above the social icons */
+  display: flex;
+  justify-content: center; /* Centers social icons */
+  gap: 15px; /* Space between icons */
+}
+
+.footer-section .social-icon {
+  font-size: 1.5rem; /* Size of the social icons */
+  color: #6a1b9a; /* Color for social icons */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.footer-section .social-icon:hover {
+  color: #ab47bc; /* Color change on hover */
+}
+
+/* Footer content that will show contact info */
+.contact-info p {
+  margin: 5px 0; /* Space around contact info text */
+  font-size: 1rem; /* Font size */
+}
+
+.footer-section .footer-note {
+  margin-top: 20px; /* Space above the footer note */
+  font-size: 0.9rem; /* Smaller font size */
+  color: #777; /* Lighter gray color */
 }

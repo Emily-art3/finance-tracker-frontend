@@ -7,8 +7,8 @@ const Home = () => {
       <TrackYourFinances />
 
       <div className="content-section">
-        <h2>Welcome to FinanceFlair</h2>
-        <p>Where managing your finances is both elegant and effortless.</p>
+        <div className="welcome-container">
+       </div>
       </div>
     </div>
   );
