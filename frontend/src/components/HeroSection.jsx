@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartPie, faShieldAlt, faWallet, faFileInvoiceDollar, faChartLine, faUsers, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import '../styles/HeroSection.css';
+import { useLocation } from "react-router-dom";
+
 
 const HeroSection = () => {
   const [showForm, setShowForm] = useState(false);
@@ -29,20 +31,33 @@ const HeroSection = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+   
+  const location = useLocation();
 
+  useEffect(() => {
+    // Scroll to the signup form if `scrollToSignup` is true
+    if (location.state?.scrollToSignup) {
+      const form = document.getElementById("signup-form");
+      if (form) form.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [location]);
   return (
     <section className="hero-section">
-      {/* Header with GET ON TOP OF YOUR FINANCES below the navbar */}
-      <div className="hero-header">
-        <h1 className="animated-heading">GET ON TOP OF YOUR FINANCES</h1>
-      </div>
+  {/* Header with GET ON TOP OF YOUR FINANCES below the navbar */}
+  <div className="hero-header">
+    <h1 className="animated-heading">
+      <span className="highlight">GET ON TOP</span>  
+      <br />
+      OF YOUR FINANCES
+    </h1>
+  </div>
 
-      {/* Hero Section with Background Image & Parallax Effect */}
-      <div className="hero-overlay">
-        <div className="hero-content">
-          {/* Background image with dynamic parallax effect */}
-        </div>
-      </div>
+  {/* Hero Section with Background Image & Parallax Effect */}
+  <div className="hero-overlay">
+    <div className="hero-content">
+      {/* Background image with dynamic parallax effect */}
+    </div>
+  </div>
 
       {/* Welcome Message Section */}
       <div className="hero-footer animated-section">
@@ -109,13 +124,21 @@ const HeroSection = () => {
           <button className="sign-up-button" onClick={handleSignUpClick}>Sign Up Now →</button>
 
           {showForm && (
-            <form className="sign-up-form">
+            <form className="signup-form">
               <h3>Sign Up for FinanceFlair</h3>
-              <input type="text" placeholder="Name" required />
-              <input type="email" placeholder="Email" required />
-              <input type="password" placeholder="Password" required />
-              <input type="text" placeholder="Phone Number" />
-              <button type="submit">Join Now</button>
+              <label>
+          Name:
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email:
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Age:
+          <input type="number" name="age" min="18" required />
+        </label>
+        <button type="submit" className="submit-btn">Sign Up</button>
             </form>
           )}
         </div>
@@ -132,7 +155,9 @@ const HeroSection = () => {
 
       {/* New Sections with Engaging Interactions */}
       <section className="features-overview">
-  <h1 className="section-heading">Unleash the Power of Your Finances</h1>
+      <h1 className="section-heading animated-heading">
+  Unleash the Power of Your Finances
+</h1>
 
       <div className="feature-section reverse">
         <h2>Budget Effortlessly</h2>
@@ -197,7 +222,7 @@ const HeroSection = () => {
       </div>
 
       {/* Secure Your Financial Data Section */}
-      <div className="feature-section reverse">
+      <div className="feature-section ">
         <h2>Secure Your Financial Data</h2>
         <p>Experience peace of mind knowing your financial data is protected with state-of-the-art security features.</p>
         <ul>
@@ -239,7 +264,7 @@ const HeroSection = () => {
           <FontAwesomeIcon icon={faEnvelope} className="social-icon" />
         </div>
         <div className="footer-links">
-          <a href="/about">About FinanceFlair</a>
+          <a href="/about-us">About Us</a>
           <a href="/support">Support</a>
           <a href="/blog">Blog</a>
           <a href="/terms">Terms</a>

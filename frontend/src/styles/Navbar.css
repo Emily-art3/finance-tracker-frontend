@@ -11,6 +11,28 @@
     top: 0;
     z-index: 1000;
   }
+
+  /* Logo styles */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .logo-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%; /* Optional: Make the logo circular */
+  }
+  
+  /* Adjustments for the navbar header */
+  .navbar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
   
   .navbar h1 {
     font-size: 1.8rem;
@@ -60,6 +82,8 @@
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
+    background: none;
+    border: none;
   }
   
   .hamburger .line {
