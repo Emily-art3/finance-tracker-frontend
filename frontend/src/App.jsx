@@ -9,7 +9,9 @@ import EditTransaction from './pages/EditTransaction';
 import Transactions from './pages/Transactions';
 import BudgetPlanner from './components/BudgetPlanner';
 import AboutUs from './components/AboutUs';
-import HeroSection from "./components/HeroSection";
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+
 function App() {
     const [message, setMessage] = useState('');
 
@@ -36,7 +38,9 @@ function App() {
                         <Route path="/transactions" element={<Transactions />} />
                         <Route path="/budget-planner" element={<BudgetPlanner />} />
                         <Route path="/about-us" element={<AboutUs />} />
-                        <Route path="/signup" element={<HeroSection />} />
+                        <Route path="/add-transaction" element={<AddTransaction />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<Signup />} />
                     </Routes>
                     {message && <p>{message}</p>}
                 </main>

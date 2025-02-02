@@ -1,46 +1,122 @@
-import React, { useState, useEffect } from 'react';
-import API from '../services/api';
+import React, { useState, useEffect } from "react";
+import API from "../services/api";
 
 const Transactions = () => {
-  const [balance, setBalance] = useState(0);
   const [transactions, setTransactions] = useState([]);
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [dateRange, setDateRange] = useState({ start: "", end: "" });
 
   useEffect(() => {
-    API.get('/api/transactions/balance')
-      .then((response) => {
-        setBalance(response.data.total_balance);
-      })
-      .catch((error) => {
-        console.error('Error fetching total balance:', error);
-      });
+    // Fetch transactions
+    const fetchTransactions = async () => {
+      try {
+        const response = await API.get("/api/transactions");
+        console.log("Fetched transactions:", response.data); 
+        setTransactions(response.data);
+        setFilteredTransactions(response.data);
 
-    API.get('/api/transactions')
-      .then((response) => {
-        setTransactions(response.data.slice(-5));
-      })
-      .catch((error) => {
-        console.error('Error fetching transactions:', error);
-      });
+        // Extract unique categories from transactions
+        const uniqueCategories = [
+          "All",
+          ...new Set(response.data.map((t) => t.category || "Uncategorized")),
+        ];
+        setCategories(uniqueCategories);
+      } catch (err) {
+        console.error("Error fetching transactions:", err);
+      }
+    };
+  
+    fetchTransactions();
   }, []);
+
+  // Filter transactions by category
+  const handleCategoryChange = (event) => {
+    const category = event.target.value;
+    setSelectedCategory(category);
+
+    const filtered =
+      category === "All"
+        ? transactions
+        : transactions.filter((t) => t.category === category);
+    setFilteredTransactions(filtered);
+  };
+
+  // Filter transactions by date range
+  const handleDateRangeChange = (event) => {
+    const { name, value } = event.target;
+    setDateRange((prevRange) => ({ ...prevRange, [name]: value }));
+  };
+  
+  useEffect(() => {
+    if (dateRange.start && dateRange.end) {
+      const filtered = transactions.filter((t) => {
+        const transactionDate = new Date(t.date);
+        return (
+          transactionDate >= new Date(dateRange.start) &&
+          transactionDate <= new Date(dateRange.end)
+        );
+      });
+      setFilteredTransactions(filtered);
+    } else {
+      setFilteredTransactions(transactions);
+    }
+  }, [dateRange, transactions]);
+  
 
   return (
     <div className="transactions-container">
-      <h2>Total Balance</h2>
-      <div className="balance">${balance.toFixed(2)}</div>
+      <h1>Your Transactions</h1>
 
-      <h2>Recent Transactions</h2>
-      {transactions.length > 0 ? (
-        <ul className="transactions-list">
-          {transactions.map((transaction) => (
-            <li key={transaction.id} className="transaction-item">
-              <span>{transaction.description}</span>
-              <span>${transaction.amount.toFixed(2)}</span>
-            </li>
+      {/* Filters */}
+      <div className="filters">
+        <select value={selectedCategory} onChange={handleCategoryChange}>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
           ))}
-        </ul>
-      ) : (
-        <p>No recent transactions available.</p>
-      )}
+        </select>
+
+        <input
+          type="date"
+          name="start"
+          value={dateRange.start}
+          onChange={handleDateRangeChange}
+        />
+        <input
+          type="date"
+          name="end"
+          value={dateRange.end}
+          onChange={handleDateRangeChange}
+        />
+      </div>
+
+      {/* Transactions Table */}
+      <table className="transactions-table">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Amount (KES)</th>
+      <th>Category</th>
+      <th>Goal</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {filteredTransactions.map((transaction) => (
+      <tr key={transaction.id}>
+        <td>{transaction.description}</td>
+        <td>{transaction.amount}</td>
+        <td>{transaction.category || "Uncategorized"}</td>
+        <td>{transaction.goal ? transaction.goal.goal_name : "No Goal"}</td>
+        <td>{new Date(transaction.date).toLocaleDateString()}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
     </div>
   );
 };

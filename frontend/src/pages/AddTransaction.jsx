@@ -2,25 +2,37 @@ import React, { useState } from 'react';
 import API from '../services/api';
 import '../styles/AddTransaction.css';
 
-const AddTransaction = () => {
+const AddTransaction = ({ fetchTransactions}) => {
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        API.post('/api/transactions', { description, amount: parseFloat(amount), date })
-            .then(() => {
-                alert('Transaction added successfully!');
-                setDescription('');
-                setAmount('');
-                setDate('');
-            })
-            .catch((error) => {
-                console.error('Error adding transaction:', error);
+        try {
+            console.log("Sending transaction data:", { description, amount, date });
+    
+            const response = await API.post("/api/transactions", { 
+                description, 
+                amount: parseFloat(amount), 
+                date 
             });
+    
+            console.log("Transaction added successfully:", response.data);
+            alert("Transaction added successfully!");
+            
+            setDescription("");
+            setAmount("");
+            setDate("");
+    
+            fetchTransactions(); 
+        } catch (error) {
+            console.error("Error adding transaction:", error.response?.data || error.message);
+            alert("Failed to add transaction. Check console for details.");
+        }
     };
+    
+      
 
     return (
         <form className="add-transaction-form" onSubmit={handleSubmit}>
