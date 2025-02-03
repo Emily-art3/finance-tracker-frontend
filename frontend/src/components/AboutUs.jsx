@@ -6,15 +6,15 @@ const AboutUs = () => {
     const navigate = useNavigate();
 
   const handleStartUsing = () => {
-        navigate("/",  { state: { scrollToSignup: true } }); // Navigate to the homepage
+        navigate("/",  { state: { scrollToSignup: true } }); 
         setTimeout(() => {
           const form = document.getElementById("signup-form");
           if (form) form.scrollIntoView({ behavior: "smooth" });
-        }, 100); // Delay to ensure the page has loaded
+        }, 100); 
       };
   return (
     <div className="about-us-container">
-      {/* About FinanceFlair Section */}
+      
       <section className="about-section">
         <h2>About FinanceFlair</h2>
         <p className="intro">
@@ -23,7 +23,7 @@ const AboutUs = () => {
         </p>
       </section>
 
-      {/* Mission Section */}
+     
       <section className="mission-container">
         <h3>Our Mission</h3>
         <p>
@@ -53,7 +53,7 @@ const AboutUs = () => {
           Start Using FinanceFlair
         </button>
 
-      {/* Team Section */}
+    
       <section>
         <h2>Meet the FinanceFlair Experts</h2>
         <div className="team">
@@ -94,7 +94,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Statistics Section */}
 <section className="statistics-section">
   <h2>Our Impact</h2>
   <div className="statistics-container">
@@ -115,7 +114,6 @@ const AboutUs = () => {
 </section>
 
 
-      {/* Contact Section */}
 <section className="contact-section">
   <h2>Connect with FinanceFlair</h2>
   <div className="contact-details">
@@ -144,7 +142,6 @@ const AboutUs = () => {
 </section>
 
 
-      {/* Office Image */}
       <div className="mt-12">
         <img
           src="/assets/green-office-space.webp"
@@ -153,7 +150,6 @@ const AboutUs = () => {
         />
       </div>
 
-      {/* Footer */}
       <footer class="footer">
   <div class="footer-links">
     <a href="/about-us">About</a>

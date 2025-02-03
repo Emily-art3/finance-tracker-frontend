@@ -1,4 +1,3 @@
-// src/components/CategoryChart.jsx
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
 import {
@@ -10,11 +9,9 @@ import {
   CategoryScale,
 } from 'chart.js';
 
-// Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend, Title, CategoryScale);
 
 const CategoryChart = ({ data }) => {
-  // Transform data into chart.js format
   const labels = Object.keys(data);
   const values = labels.map(
     (category) =>
@@ -23,7 +20,6 @@ const CategoryChart = ({ data }) => {
         .reduce((sum, value) => sum + value, 0)
   );
 
-  // Define chart data
   const chartData = {
     labels,
     datasets: [

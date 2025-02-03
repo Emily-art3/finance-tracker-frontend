@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/BudgetPlanner.css'; // Import CSS for better styling
+import '../styles/BudgetPlanner.css'; 
 import CategoryChart from './CategoryChart';
 
 const BudgetPlanner = () => {
@@ -21,7 +21,6 @@ const BudgetPlanner = () => {
 
   const timeframes = ['Day', 'Per Week', '2 Weeks', '4 Weeks', 'Month', 'Quarter', '6 Months', 'Year'];
 
-  // Handle input change
   const handleInputChange = (category, subCategory, field, value) => {
     const updatedCategories = { ...categories };
     if (field === 'amount') {
@@ -33,7 +32,6 @@ const BudgetPlanner = () => {
     recalculateTotals(updatedCategories);
   };
 
-  // Recalculate totals
   const recalculateTotals = (updatedCategories) => {
     const income = Object.values(updatedCategories.income).reduce((sum, val) => sum + val.amount, 0);
     const spending = Object.keys(updatedCategories)
@@ -51,7 +49,6 @@ const BudgetPlanner = () => {
         <p>Manage your finances efficiently and effectively. Plan for today, tomorrow, and beyond.</p>
       </header>
 
-      {/* Categories */}
       {Object.keys(categories).map((categoryKey, categoryIndex) => (
         <section key={categoryIndex} className="category-section">
          <h2>{categoryKey.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}</h2>
@@ -104,7 +101,6 @@ const BudgetPlanner = () => {
 </section>
 
 
-      {/* Summary Section */}
       <footer className="summary-section">
         <h2>Summary</h2>
         <p>

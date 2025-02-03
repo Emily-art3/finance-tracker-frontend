@@ -11,13 +11,12 @@ const Navbar = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token); // Convert token existence to boolean
+    setIsAuthenticated(!!token); 
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove token from localStorage
-    setIsAuthenticated(false);
-    navigate("/login"); // Redirect to login page
+    localStorage.removeItem("token"); 
+    navigate("/login"); 
   };
 
   const toggleMenu = () => {
@@ -31,7 +30,6 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-header">
-        {/* Logo */}
         <div className="navbar-logo">
           <img
             src="/assets/images (1).jpeg"
@@ -41,7 +39,6 @@ const Navbar = () => {
           <h1>Finance Tracker</h1>
         </div>
 
-        {/* Hamburger Menu */}
         <button
           className="hamburger"
           onClick={toggleMenu}
@@ -78,7 +75,6 @@ const Navbar = () => {
           </NavLink>
         </li>
 
-        {/* Authentication Links */}
         {isAuthenticated ? (
           <li>
             <button onClick={handleLogout} className="logout-btn">

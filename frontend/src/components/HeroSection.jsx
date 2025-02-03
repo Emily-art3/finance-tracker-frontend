@@ -12,7 +12,6 @@ const HeroSection = () => {
     setShowForm(true);
   };
 
-  // Add smooth scrolling effect to the window scroll for interactive visuals
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll('.animated-section');
@@ -35,7 +34,6 @@ const HeroSection = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Scroll to the signup form if `scrollToSignup` is true
     if (location.state?.scrollToSignup) {
       const form = document.getElementById("signup-form");
       if (form) form.scrollIntoView({ behavior: "smooth" });
@@ -43,7 +41,6 @@ const HeroSection = () => {
   }, [location]);
   return (
     <section className="hero-section">
-  {/* Header with GET ON TOP OF YOUR FINANCES below the navbar */}
   <div className="hero-header">
     <h1 className="animated-heading">
       <span className="highlight">GET ON TOP</span>  
@@ -52,14 +49,11 @@ const HeroSection = () => {
     </h1>
   </div>
 
-  {/* Hero Section with Background Image & Parallax Effect */}
   <div className="hero-overlay">
     <div className="hero-content">
-      {/* Background image with dynamic parallax effect */}
     </div>
   </div>
 
-      {/* Welcome Message Section */}
       <div className="hero-footer animated-section">
         <p className="welcome-message">
           <b>Welcome to FinanceFlair, where managing your finances is both elegant and effortless.</b>
@@ -67,7 +61,6 @@ const HeroSection = () => {
         <button className="get-started-btn" onClick={handleSignUpClick}>Get Started</button>
       </div>
 
-      {/* Empowering Financial Journey Section */}
       <div className="empower-financial-journey">
         <h2 className="empower-heading animated-section">Empower Your Financial Journey</h2>
         <h3 className="bigger-bold-heading">All-in-One Finance Tracker</h3>
@@ -75,7 +68,6 @@ const HeroSection = () => {
           <b>FinanceFlair offers everything you need to manage your finances in one place.</b>
         </p>
 
-        {/* Services Section */}
         <div className="services-container">
           <div className="service">
             <FontAwesomeIcon icon={faChartPie} className="service-logo" />
@@ -115,7 +107,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Start Your Journey Section (Below Empower Your Financial Journey) */}
      
         <div className="text-container">
           <h2 className="journey-heading">Start Your Financial Journey</h2>
@@ -153,7 +144,6 @@ const HeroSection = () => {
 
       </div>
 
-      {/* New Sections with Engaging Interactions */}
       <section className="features-overview">
       <h1 className="section-heading animated-heading">
   Unleash the Power of Your Finances
@@ -221,7 +211,6 @@ const HeroSection = () => {
         />
       </div>
 
-      {/* Secure Your Financial Data Section */}
       <div className="feature-section ">
         <h2>Secure Your Financial Data</h2>
         <p>Experience peace of mind knowing your financial data is protected with state-of-the-art security features.</p>
@@ -240,7 +229,6 @@ const HeroSection = () => {
         />
       </div>
 
-      {/* User-Friendly Interface Section */}
       <div className="feature-section reverse">
         <h2>User-Friendly Interface</h2>
         <p>Our interface is designed with you in mind, offering a seamless experience that makes managing your finances a breeze.</p>
@@ -256,7 +244,6 @@ const HeroSection = () => {
       </div>
       </section>
 
-      {/* Footer Section */}
       <footer className="footer-section">
         <p>© FinanceFlair 2025, Your Trusted Financial Companion</p>
         <div className="social-icons">

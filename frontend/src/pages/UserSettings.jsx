@@ -4,7 +4,6 @@ import axios from 'axios';
 const UserSettings = () => {
   const [locale, setLocale] = useState('en_US');
 
-  // Handles locale change
   const handleLocaleChange = async (newLocale) => {
     try {
       const response = await axios.patch(
@@ -22,7 +21,6 @@ const UserSettings = () => {
   };
 
   useEffect(() => {
-    // Fetch the user's current locale when the component mounts
     const fetchLocale = async () => {
       try {
         const response = await axios.get('/api/users/me', {

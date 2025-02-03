@@ -5,7 +5,6 @@ import '../styles/form.css';
 
 const Signup = () => {
   const navigate = useNavigate();
-  // Change initial state to use 'username' instead of 'name'
   const [formData, setFormData] = useState({ username: "", email: "", password: "" });
 
   const handleChange = (e) => {
@@ -28,7 +27,6 @@ const Signup = () => {
       <div className="form-content">
         <h2 className="form-title">Sign Up</h2>
         <form onSubmit={handleSubmit}>
-          {/* Change name="name" to name="username" */}
           <input
             type="text"
             name="username"

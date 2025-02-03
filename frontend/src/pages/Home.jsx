@@ -1,5 +1,5 @@
 import React from 'react';
-import TrackYourFinances from '../components/HeroSection';  // Correct path for HeroSection
+import TrackYourFinances from '../components/HeroSection';  
 
 const Home = () => {
   return (
