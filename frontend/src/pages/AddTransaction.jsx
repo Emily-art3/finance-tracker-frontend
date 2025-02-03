@@ -37,9 +37,17 @@ const AddTransaction = ({ fetchTransactions }) => {
             console.log("Sending transaction data:", { description, amount, date, categoryId });
 
             const token = localStorage.getItem("token");
+            const userId = localStorage.getItem("user_id"); 
+            console.log("User ID:", userId); 
+
+            if (!userId) {
+                alert("User not logged in.");
+                return;
+            }
 
             const response = await API.post("/api/transactions",
-                {
+                {   
+                    user_id: userId,  
                     description,
                     amount: parseFloat(amount),
                     date,
