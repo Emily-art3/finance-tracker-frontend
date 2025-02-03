@@ -7,17 +7,21 @@ const Transactions = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [dateRange, setDateRange] = useState({ start: "", end: "" });
-
   useEffect(() => {
-    // Fetch transactions
     const fetchTransactions = async () => {
       try {
         const response = await API.get("/api/transactions");
-        console.log("Fetched transactions:", response.data); 
-        setTransactions(response.data);
-        setFilteredTransactions(response.data);
-
-        // Extract unique categories from transactions
+        console.log("Fetched transactions:", response.data);
+  
+        if (Array.isArray(response.data)) {
+          setTransactions(response.data);
+          setFilteredTransactions(response.data);
+        } else {
+          console.error("Fetched data is not an array:", response.data);
+          setTransactions([]);
+          setFilteredTransactions([]);
+        }
+  
         const uniqueCategories = [
           "All",
           ...new Set(response.data.map((t) => t.category || "Uncategorized")),
@@ -30,8 +34,8 @@ const Transactions = () => {
   
     fetchTransactions();
   }, []);
+  
 
-  // Filter transactions by category
   const handleCategoryChange = (event) => {
     const category = event.target.value;
     setSelectedCategory(category);
@@ -43,7 +47,6 @@ const Transactions = () => {
     setFilteredTransactions(filtered);
   };
 
-  // Filter transactions by date range
   const handleDateRangeChange = (event) => {
     const { name, value } = event.target;
     setDateRange((prevRange) => ({ ...prevRange, [name]: value }));
@@ -69,7 +72,6 @@ const Transactions = () => {
     <div className="transactions-container">
       <h1>Your Transactions</h1>
 
-      {/* Filters */}
       <div className="filters">
         <select value={selectedCategory} onChange={handleCategoryChange}>
           {categories.map((category) => (
@@ -93,7 +95,6 @@ const Transactions = () => {
         />
       </div>
 
-      {/* Transactions Table */}
       <table className="transactions-table">
   <thead>
     <tr>

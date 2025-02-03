@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import '../styles/form.css';  // Ensure you add the styles in a separate CSS file
+import '../styles/form.css';  
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,17 +10,29 @@ const Login = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/login", formData);
-      localStorage.setItem("token", response.data.token);
-      navigate("/transactions");
+        const response = await axios.post("http://localhost:5000/api/login", formData);
+
+        console.log("Login response:", response.data); 
+
+        const token = response.data.access_token; 
+
+        if (token) {
+            localStorage.setItem("token", token);
+            console.log("Token saved:", token);
+        } else {
+            console.error("No token received!");
+        }
+
+        navigate("/transactions");
     } catch (error) {
-      alert("Login failed: " + (error.response?.data?.message || "Unknown error"));
+        console.error("Login failed:", error.response?.data || error.message);
+        alert("Login failed: " + (error.response?.data?.message || "Unknown error"));
     }
-  };
+};
+
 
   return (
     <div className="form-container">
