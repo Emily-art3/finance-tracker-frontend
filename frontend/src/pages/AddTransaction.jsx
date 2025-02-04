@@ -32,34 +32,32 @@ const AddTransaction = ({ fetchTransactions }) => {
             alert("Please select a category.");
             return;
         }
-        
-        try {
-            console.log("Sending transaction data:", { description, amount, date, categoryId });
-
-            const token = localStorage.getItem("token");
-            const userId = localStorage.getItem("user_id"); 
-            console.log("User ID:", userId); 
+            console.log("Checking stored user:", localStorage.getItem("user"));
+           
+            const storedUser = JSON.parse(localStorage.getItem("user"));
+            const userId = storedUser?.user_id;  
+            const token = storedUser?.access_token; 
 
             if (!userId) {
+                console.error("User ID is missing. Cannot add transaction.");
                 alert("User not logged in.");
                 return;
             }
+            const transactionData = {
+                user_id: userId,  
+                description,
+                amount: parseFloat(amount),
+                date,
+                category_id: categoryId,
+            };
+                try{ 
+                    const response = await API.post("/api/transactions", transactionData, {
 
-            const response = await API.post("/api/transactions",
-                {   
-                    user_id: userId,  
-                    description,
-                    amount: parseFloat(amount),
-                    date,
-                    category_id: categoryId,
-                },
-                {
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json"
                     }
-                }
-            );
+                });
 
             console.log("Transaction added successfully:", response.data);
             alert("Transaction added successfully!");

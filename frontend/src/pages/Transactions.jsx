@@ -7,6 +7,7 @@ const Transactions = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [dateRange, setDateRange] = useState({ start: "", end: "" });
+  
   useEffect(() => {
     const fetchTransactions = async () => {
       try {

@@ -10,26 +10,36 @@ const Login = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
         const response = await axios.post("http://localhost:5000/api/login", formData);
+        console.log("Login response:", response.data);
 
-        console.log("Login response:", response.data); 
+        if (response.data.access_token && response.data.user_id) {
+            const userData = JSON.stringify({
+                user_id: response.data.user_id,
+                access_token: response.data.access_token
+            });
 
-        const token = response.data.access_token; 
+            try {
+                localStorage.setItem("user", userData);
+            } catch (error) {
+                console.warn("localStorage not available. Using sessionStorage.");
+                sessionStorage.setItem("user", userData);
+            }
 
-        if (token) {
-            localStorage.setItem("token", token);
-            console.log("Token saved:", token);
+            console.log("Token and User ID saved:", response.data.access_token, response.data.user_id);
+            navigate("/transactions");
         } else {
             console.error("No token received!");
+            alert("Login failed: No token received.");
         }
-
-        navigate("/transactions");
     } catch (error) {
         console.error("Login failed:", error.response?.data || error.message);
-        alert("Login failed: " + (error.response?.data?.message || "Unknown error"));
+        alert("Login failed: " + (error.response?.data?.error || "Unknown error"));
     }
 };
 

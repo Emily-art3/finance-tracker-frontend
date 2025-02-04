@@ -1,15 +1,29 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "http://localhost:5000", 
+  baseURL: "http://localhost:5000",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
-API.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("token"); 
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`; 
+API.interceptors.request.use((config) => {
+    let storedUser = null;
+    
+    try {
+        storedUser = JSON.parse(localStorage.getItem("user")) || JSON.parse(sessionStorage.getItem("user"));
+    } catch (error) {
+        console.error("Error accessing storage:", error);
     }
+    
+    const token = storedUser?.access_token;
+    
+    if (token) {
+        config.headers["Authorization"] = `Bearer ${token}`;
+    } else {
+        console.error("No token found in localStorage or sessionStorage!");
+    }
+    
     return config;
   },
   (error) => {
